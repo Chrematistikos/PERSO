@@ -164,8 +164,8 @@ dette_prev4 = []
 solde_star4 = []
 
 for _ in range(n):
+    s4 = ((1 + r) / (1 + g) - 1) * x4 + delta4
     x4 = d(x4, s4)
-    s4 = ((1+r)/(1+g)-1)*x4 + delta4
     solde_star4.append(s4*100)
     dette_prev4.append(x4*100)
     st.write(f"Dette : ",x4*100)

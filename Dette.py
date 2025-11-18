@@ -207,6 +207,8 @@ for _ in range(n):
     dette_const.append(x*100)
     solde_const.append(s_const*100)
 
+solde_const[-1] = s_stable(dette_const[-1])
+
 annee_const = [a0 + i for i in range(len(dette_const))]
 fig7, ax7 = plt.subplots(figsize=(10,5))
 ax7.plot(annee_const, dette_const, color='red', marker='o', linestyle='-')

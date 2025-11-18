@@ -27,7 +27,7 @@ menu = st.sidebar.radio(
         "Situation actuelle",
         "Ajustement instantané",
         "Ajustement progressif",
-        "Réduction de dette",
+        "Réduction de dette (solde variable)",
         "Réduction de dette (solde constant)"
     ]
 )
@@ -155,7 +155,7 @@ if menu == "Ajustement progressif":
 # =============================================================================
 # 4️⃣ RÉDUCTION DE DETTE – solde variable
 # =============================================================================
-if menu == "Réduction de dette":
+if menu == "Réduction de dette (solde variable)":
     st.header("4️⃣ Réduction de dette avec solde variable")
 
     x4 = x0

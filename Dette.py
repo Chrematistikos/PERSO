@@ -9,15 +9,15 @@ import matplotlib.pyplot as plt
 st.title("Simulation de la dette publique")
 
 # Paramètres ajustables
-r = st.sidebar.number_input("Taux d'intérêt actuel (r)", value=2.25, step=0.01)/100
-g = st.sidebar.number_input("Taux de croissance actuel (g)", value=1.8, step=0.1)/100
-s0 = st.sidebar.number_input("Solde primaire actuel (% PIB)", value=-3.2, step=0.1)/100
-x0 = st.sidebar.number_input("Dette actuelle (% PIB)", value=115, step=0.5)/100
+r = (st.sidebar.number_input("Taux d'intérêt actuel (r)", value=2.25, step=0.01))/100
+g = (st.sidebar.number_input("Taux de croissance actuel (g)", value=1.8, step=0.1))/100
+s0 = (st.sidebar.number_input("Solde primaire actuel (% PIB)", value=-3.2, step=0.1))/100
+x0 = (st.sidebar.number_input("Dette actuelle (% PIB)", value=115, step=0.5))/100
 a0 = st.sidebar.number_input("Année actuelle", value=2025, step=1)
-x_Obj = st.sidebar.number_input("Objectif de dette (% PIB)", value=100, step=0.5)/100
+x_Obj = (st.sidebar.number_input("Objectif de dette (% PIB)", value=100, step=0.5))/100
 t = st.sidebar.number_input("Durée de projection pour la trajectoire  (années)", value=5, step=1)
 n = st.sidebar.number_input("Durée pour atteindre l'objectif de dette (années)", value=10, step=1)
-effort = st.sidebar.number_input("Effort annuel pour l'ajustement progressif (% PIB)", value=0.005, step=0.001)/100
+effort = (st.sidebar.number_input("Effort annuel pour l'ajustement progressif (% PIB)", value=0.005, step=0.001))/100
 
 
 # Menu

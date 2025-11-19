@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 st.title("Simulation de la dette publique")
 
 # Paramètres ajustables
-r = (st.sidebar.number_input("Taux d'intérêt actuel (r)", value=2.25, step=0.01))/100
+r = (st.sidebar.number_input("Taux d'intérêt actuel (r)", value=2.5, step=0.01))/100
 g = (st.sidebar.number_input("Taux de croissance actuel (g)", value=1.8, step=0.1))/100
 s0 = (st.sidebar.number_input("Solde primaire actuel (% PIB)", value=-3.2, step=0.1))/100
 x0 = (st.sidebar.number_input("Dette actuelle (% PIB)", value=115.0, step=0.5))/100

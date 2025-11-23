@@ -148,6 +148,7 @@ if menu == "Ajustement instantané":
     st.subheader("Trajectoire de la dette suite à l'ajustement instantané")
     fig3, ax3 = plt.subplots(figsize=(10,5))
     ax3.plot(annee2, dette_prev2, marker='o')
+    ax3.grid(True)
     st.pyplot(fig3)
 
 
@@ -180,6 +181,7 @@ if menu == "Ajustement progressif":
     ax4.plot(annee3, solde_traj3, marker='o', label='Solde appliqué')
     ax4.plot(annee3, solde_star3, marker='o', label='Solde stabilisant')
     ax4.legend()
+    ax4.grid(True)
     st.pyplot(fig4)
 
 
@@ -209,11 +211,13 @@ if menu == "Réduction de dette (solde variable)":
     st.subheader("Trajectoire de la dette")
     fig5, ax5 = plt.subplots(figsize=(10,5))
     ax5.plot(annee4, dette_prev4, marker='o')
+    ax5.grid(True)
     st.pyplot(fig5)
 
     st.subheader("Trajectoire du solde")
     fig6, ax6 = plt.subplots(figsize=(10,5))
     ax6.plot(annee4, solde_star4, marker='o')
+    ax6.grid(True)
     st.pyplot(fig6)
 
 
@@ -243,11 +247,13 @@ if menu == "Réduction de dette (solde constant)":
     st.subheader("Trajectoire de la dette")
     fig7, ax7 = plt.subplots(figsize=(10,5))
     ax7.plot(annee_const, dette_const, marker='o')
+    ax7.grid(True)
     st.pyplot(fig7)
 
     st.subheader("Trajectoire du solde")
     fig8, ax8 = plt.subplots(figsize=(10,5))
     ax8.plot(annee_const, solde_const, marker='o')
+    ax8.grid(True)
     st.pyplot(fig8)
 
     st.write(f"Dette initiale : {dette_const[0]:.2f}% du PIB")

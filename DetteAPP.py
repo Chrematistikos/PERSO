@@ -51,7 +51,7 @@ def x_stable(s):
 if menu == "Situation actuelle":
     st.header("Situation actuelle")
     x_star1 = x_stable(s0)*100
-    y_star1 = x_star1*100
+    y_star1 = x_star1
     st.write(f"Point fixe calculé : {x_star1*100:.4f}% du PIB")
 
     x0 = x0*100

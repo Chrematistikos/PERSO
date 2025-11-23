@@ -70,8 +70,8 @@ if menu == "Situation actuelle":
     fig, ax = plt.subplots(figsize=(10, 7))
 
     # Courbes
-    ax.plot(x_vals_pct, y_vals_pct, label="y = \frac{1 + r}{1 + g}x - s", color='red')
-    ax.plot(x_vals_pct, x_vals_pct, label="y = x", color='blue')
+    ax.plot(x_vals_pct, y_vals_pct, label=r'$y = \frac{1 + r}{1 + g}x - s$', color='red')
+    ax.plot(x_vals_pct, x_vals_pct, label=r'$y = x', color='blue')
 
     # Point fixe
     ax.scatter(x_star_pct, x_star_pct, color='red', s=60, label="Point fixe")

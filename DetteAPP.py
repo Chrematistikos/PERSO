@@ -64,7 +64,7 @@ if menu == "Situation actuelle":
     fig, ax = plt.subplots(figsize=(10,7))
     ax.plot(x_vals, y_vals, label=r'$y = \frac{1 + r}{1 + g}x - s$', color='red')
     ax.plot(x_vals, x_vals, label=r'$y = x$', color='blue')
-    ax.scatter(x0*100, x0*100, color='red', s=60)
+    ax.scatter(x_star1, y_star1, color='red', s=60)
     ax.legend()
 
     ax.set_xlim(x0*100 - delta, x0*100 + delta)

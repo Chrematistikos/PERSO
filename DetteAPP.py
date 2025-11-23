@@ -60,13 +60,12 @@ if menu == "Situation actuelle":
     y_vals = d(x_vals, s0*100)
 
     fig, ax = plt.subplots(figsize=(10,7))
-    ax.plot(x_vals, y_vals, label=r'$y = \frac{1 + r}{1 + g}x - s$', color='red', linewidth=1)
-    ax.plot(x_vals, x_vals, label=r'$y = x$', color='blue', linewidth=1)
     ax.plot(x_vals, y_vals, label=r'$y = \frac{1 + r}{1 + g}x - s$', color='red')
     ax.plot(x_vals, x_vals, label=r'$y = x$', color='blue')
     ax.scatter(x_star1, y_star1, color='red', s=60)
     ax.plot([x_star1, x_star1], [0, y_star1], color='gray', linestyle='--')
     ax.plot([0, x_star1], [y_star1, y_star1], color='gray', linestyle='--')
+    ax.legend()
 
     ax.set_xlim(x0*100 - delta, x0*100 + delta)
     ax.set_ylim(x0*100 - delta, x0*100 + delta)

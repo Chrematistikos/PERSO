@@ -52,29 +52,15 @@ def x_stable(s):
 # =============================================================================
 if menu == "Situation actuelle":
     st.header("Situation actuelle")
-    fig, ax = plt.subplots(figsize=(10, 7))
 
     # --- Point fixe (calcul en ratio, affichage en %) ---
     x_star = x_stable(s0)
     st.write(f"Point fixe calculé : {x_star * 100:.4f}% du PIB")
 
-    # --- Dynamique de dette ---
-    dette_prev1 = [x0 * 100]
-    solde_prev1 = [s_stable(x0) * 100]
-
-    xn = x0
-
-    for _ in range(t):
-        yn = d(xn, s0)  # calcul en ratio
-        ax.plot([xn * 100, xn * 100], [xn * 100, yn * 100], color='green')  # verticale
-        ax.plot([xn * 100, yn * 100], [yn * 100, yn * 100], color='green')  # horizontale
-
-        xn = yn
-        dette_prev1.append(yn * 100)
-        solde_prev1.append(s_stable(xn) * 100)
+    fig, ax = plt.subplots(figsize=(10, 7))
 
     # --- Domaine autour de x0 ---
-    delta = abs(x0 + (dette_prev1[-1])/100) * 0.5
+    delta = abs(x0 + t / 50) * 0.5
     x_vals = np.linspace(x0 - delta, x0 + delta, 500)
     y_vals = d(x_vals, s0)
 
@@ -90,7 +76,20 @@ if menu == "Situation actuelle":
     # Point fixe
     ax.scatter(x_star_pct, x_star_pct, color='red', s=60, label="Point fixe")
 
+    # --- Dynamique de dette ---
+    dette_prev1 = [x0 * 100]
+    solde_prev1 = [s_stable(x0) * 100]
 
+    xn = x0
+
+    for _ in range(t):
+        yn = d(xn, s0)  # calcul en ratio
+        ax.plot([xn * 100, xn * 100], [xn * 100, yn * 100], color='green')  # verticale
+        ax.plot([xn * 100, yn * 100], [yn * 100, yn * 100], color='green')  # horizontale
+
+        xn = yn
+        dette_prev1.append(yn * 100)
+        solde_prev1.append(s_stable(xn) * 100)
 
     # --- Point initial et final visibles ---
     ax.scatter(dette_prev1[0], dette_prev1[0], color='black', s=70, label="Point initial")

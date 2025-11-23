@@ -70,7 +70,7 @@ if menu == "Situation actuelle":
     fig, ax = plt.subplots(figsize=(10, 7))
 
     # Courbes
-    ax.plot(x_vals_pct, y_vals_pct, label='y = f(x)', color='red')
+    ax.plot(x_vals_pct, y_vals_pct, label='y = \frac{1 + r}{1 + g}x - s', color='red')
     ax.plot(x_vals_pct, x_vals_pct, label='y = x', color='blue')
 
     # Point fixe
@@ -104,7 +104,7 @@ if menu == "Situation actuelle":
     ax.set_ylim((x0 - delta) * 100, (x0 + delta) * 100)
 
     ax.set_xlabel("Dette (% PIB)")
-    ax.set_ylabel("Itération suivante (% PIB)")
+    ax.set_ylabel("Dette (% PIB)")
     ax.set_title("Dynamique de la dette")
     ax.legend()
 

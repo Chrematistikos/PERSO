@@ -58,7 +58,7 @@ if menu == "Situation actuelle":
     st.write(f"Point fixe calculé : {x_star * 100:.4f}% du PIB")
 
     # --- Domaine autour de x0 ---
-    delta = abs(x0) * 0.5
+    delta = abs(x0+t) * 0.5
     x_vals = np.linspace(x0 - delta, x0 + delta, 500)
     y_vals = d(x_vals, s0)
 

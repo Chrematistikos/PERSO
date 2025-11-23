@@ -52,55 +52,80 @@ def x_stable(s):
 # =============================================================================
 if menu == "Situation actuelle":
     st.header("Situation actuelle")
-    x_star1 = x_stable(s0)*100
-    y_star1 = x_star1
-    st.write(f"Point fixe calculé : {x_star1:.4f}% du PIB")
 
+    # --- Point fixe (calcul en ratio, affichage en %) ---
+    x_star = x_stable(s0)
+    st.write(f"Point fixe calculé : {x_star * 100:.4f}% du PIB")
 
-    delta = (abs(t) * 7 if x0*100 != 0 else 1)
-    x_vals = np.linspace(x0*100 - delta, x0*100 + delta, 500)
-    y_vals = d(x_vals, s0*100)
+    # --- Domaine autour de x0 ---
+    delta = abs(x0) * 0.5
+    x_vals = np.linspace(x0 - delta, x0 + delta, 500)
+    y_vals = d(x_vals, s0)
 
-    fig, ax = plt.subplots(figsize=(10,7))
-    ax.plot(x_vals, y_vals, label=r'$y = \frac{1 + r}{1 + g}x - s$', color='red')
-    ax.plot(x_vals, x_vals, label=r'$y = x$', color='blue')
-    ax.scatter(x_star1, y_star1, color='red', s=60)
-    ax.legend()
+    # Conversion en % uniquement pour affichage
+    x_vals_pct = x_vals * 100
+    y_vals_pct = y_vals * 100
+    x_star_pct = x_star * 100
 
-    ax.set_xlim(x0*100 - delta, x0*100 + delta)
-    ax.set_ylim(x0*100 - delta, x0*100 + delta)
+    fig, ax = plt.subplots(figsize=(10, 7))
 
-    dette_prev1 = []
-    solde_prev1 = []
+    # Courbes
+    ax.plot(x_vals_pct, y_vals_pct, label='y = f(x)', color='red')
+    ax.plot(x_vals_pct, x_vals_pct, label='y = x', color='blue')
+
+    # Point fixe
+    ax.scatter(x_star_pct, x_star_pct, color='red', s=60, label="Point fixe")
+
+    # --- Dynamique de dette ---
+    dette_prev1 = [x0 * 100]
+    solde_prev1 = [s_stable(x0) * 100]
+
     xn = x0
-    dette_prev1.append(xn*100)
-    solde_prev1.append(s_stable(xn)*100)
 
     for _ in range(t):
-        yn = d(xn, s0)
-        st.write(xn,yn)
-        ax.plot([xn * 100, xn * 100], [xn * 100, yn * 100], color='green')
-        ax.plot([xn*100, yn*100], [yn*100, yn*100], color='green')
+        yn = d(xn, s0)  # calcul en ratio
+        ax.plot([xn * 100, xn * 100], [xn * 100, yn * 100], color='green')  # verticale
+        ax.plot([xn * 100, yn * 100], [yn * 100, yn * 100], color='green')  # horizontale
+
         xn = yn
         dette_prev1.append(yn * 100)
         solde_prev1.append(s_stable(xn) * 100)
 
-    ax.plot([x0*100 - delta, dette_prev1[0]], [dette_prev1[0], dette_prev1[0]], color='gray', linestyle='--')
-    ax.plot([x0*100 - delta, dette_prev1[-1]], [dette_prev1[-1], dette_prev1[-1]], color='gray', linestyle='--')
+    # --- Point initial et final visibles ---
+    ax.scatter(dette_prev1[0], dette_prev1[0], color='black', s=70, label="Point initial")
+    ax.scatter(dette_prev1[-1], dette_prev1[-1], color='green', s=70, label="Point final")
+
+    # Lignes horizontales (pour lecture claire)
+    ax.axhline(dette_prev1[0], linestyle='--', color='gray')
+    ax.axhline(dette_prev1[-1], linestyle='--', color='gray')
+
+    # Axes centrés sur x0
+    ax.set_xlim((x0 - delta) * 100, (x0 + delta) * 100)
+    ax.set_ylim((x0 - delta) * 100, (x0 + delta) * 100)
+
+    ax.set_xlabel("Dette (% PIB)")
+    ax.set_ylabel("Itération suivante (% PIB)")
+    ax.set_title("Dynamique de la dette (itérations)")
+    ax.legend()
+
     st.pyplot(fig)
 
+    # --- Séries temporelles ---
     annee1 = [a0 + i for i in range(len(dette_prev1))]
 
     st.subheader("Trajectoire de la dette")
-    fig, ax = plt.subplots(figsize=(10,5))
+    fig, ax = plt.subplots(figsize=(10, 5))
     ax.plot(annee1, dette_prev1, marker='o')
+    ax.set_ylabel("Dette (% PIB)")
+    ax.grid(True)
     st.pyplot(fig)
 
     st.subheader("Trajectoire du solde stabilisant la dette")
-    fig2, ax2 = plt.subplots(figsize=(10,5))
+    fig2, ax2 = plt.subplots(figsize=(10, 5))
     ax2.plot(annee1, solde_prev1, marker='o')
+    ax2.set_ylabel("Solde stabilisant (% PIB)")
+    ax2.grid(True)
     st.pyplot(fig2)
-
 
 # =============================================================================
 # 2️⃣ AJUSTEMENT INSTANTANÉ

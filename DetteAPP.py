@@ -52,11 +52,11 @@ if menu == "Situation actuelle":
     st.header("Situation actuelle")
     x_star1 = x_stable(s0)*100
     y_star1 = x_star1
-    st.write(f"Point fixe calculé : {x_star1*100:.4f}% du PIB")
+    st.write(f"Point fixe calculé : {x_star1:.4f}% du PIB")
 
     x0 = x0*100
     s0= s0*100
-    delta = (abs(x0) * 2 if x0 != 0 else 1)*100
+    delta = (abs(x0) * 2 if x0 != 0 else 1)
     x_vals = np.linspace(x0 - delta, x0 + delta, 500)
     y_vals = d(x_vals, s0)
 

@@ -58,7 +58,7 @@ if menu == "Situation actuelle":
 
 
     delta = (abs(x0*100) * 2 if x0*100 != 0 else 1)
-    x_vals = np.linspace(x0*100 - delta, x0*100 + delta, t+10)
+    x_vals = np.linspace(x0*100 - delta, x0*100 + delta, t)
     y_vals = d(x_vals, s0*100)
 
     fig, ax = plt.subplots(figsize=(10,7))
